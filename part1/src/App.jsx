@@ -2,7 +2,7 @@
 const Header = (props)=>{
   return(
     <header>
-    <h1>{props.course}</h1>
+    <h1>{props.course.name}</h1>
     </header>
   )
 }
@@ -25,12 +25,12 @@ const Part3 = (props)=>{
   )
 }
 
-const Content  = (props)=>{
+const Content  = (props)=>{  
   return(
     <article>
-      <Part1 part1 = {props.parts[0].name} exercises1 = {props.parts[0].exercises1} />
-      <Part2 part2 = {props.parts[1].name} exercises2 = {props.parts[1].exercises2} />
-      <Part3 part3 = {props.parts[2].name} exercises3 = {props.parts[2].exercises3} />
+      <Part1 part1 = {props.course.parts[0].name} exercises1 = {props.course.parts[0].exercises1} />
+      <Part2 part2 = {props.course.parts[1].name} exercises2 = {props.course.parts[1].exercises2} />
+      <Part3 part3 = {props.course.parts[2].name} exercises3 = {props.course.parts[2].exercises3} />
     </article>
   )
 }
@@ -38,32 +38,34 @@ const Content  = (props)=>{
 const Footer = (props)=>{  
   return(
     <footer>
-      <p>Number of exercises {props.parts[0].exercises1 + props.parts[1].exercises2 + props.parts[2].exercises3}</p>
+      <p>Number of exercises {props.course.parts[0].exercises1 + props.course.parts[1].exercises2 + props.course.parts[2].exercises3}</p>
     </footer>
   )
 }
 
 const App = () => {
-  const course = 'Half Stack application development'
-  const parts = [
-    {
-      name: 'Fundamentals of React',
-      exercises1: 10
-    },
-    {
-      name: 'Using props to pass data',
-      exercises2: 7
-    },
-    {
-      name: 'State of a component',
-      exercises3: 14
-    }
-  ]
+  const course = {
+    name: 'Half Stack application development',
+    parts: [
+      {
+        name: 'Fundamentals of React',
+        exercises1: 10
+      },
+      {
+        name: 'Using props to pass data',
+        exercises2: 7
+      },
+      {
+        name: 'State of a component',
+        exercises3: 14
+      }
+    ]
+  }
   return (
     <>
       <Header course={course} />
-      <Content parts={parts} />
-      <Footer parts={parts} />
+      <Content course={course} />
+      <Footer course={course} />
     </>
   )
 }
