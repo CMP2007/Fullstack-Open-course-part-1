@@ -14,13 +14,7 @@ const App = () =>  {
 
   const [selected, setSelected] = useState(0)  
 
-  // const number= Math.random()
-const random =(min, max)=>{ setSelected(Math.floor(Math.random()*(max - min + 1)));
-}
-// function obtenerNumeroAleatorioEntre(min, max) {
-//   return Math.floor(Math.random() * (max - min + 1)) + min;
-// }
-
+const random =(min, max)=>{ setSelected(Math.floor(Math.random()*(max - min + 1)))}
 
 console.log(selected)
   return (
