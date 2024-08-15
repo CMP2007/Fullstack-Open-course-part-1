@@ -24,13 +24,17 @@ const Buttons = ({text, onClick})=>{
   )
 }
 
-const Section = ({data, subTitle, comments: [goodLabel, neutralLabel, badLabel]})=>{
+const Section = ({statistics, counting, subTitle, comments: [goodLabel, neutralLabel, badLabel, allLabel, averageLabel,positiveLabel]})=>{
+  console.log(statistics.calculations);
   return(
     <>
       <SubTitle subTitle = {subTitle} />
-      <Statistics label ={goodLabel} data={data.good} />
-      <Statistics label ={neutralLabel} data={data.neutral} />
-      <Statistics label ={badLabel} data={data.bad} />
+      <Statistics label ={goodLabel} data={counting.good} />
+      <Statistics label ={neutralLabel} data={counting.neutral} />
+      <Statistics label ={badLabel} data={counting.bad} />
+      <Statistics label ={allLabel} data={statistics.addition} />
+      <Statistics label ={averageLabel} data={statistics.calculations.averge} /> 
+      <Statistics label ={positiveLabel} data={statistics.calculations.positive} />
     </>
   )
 }
@@ -56,25 +60,49 @@ const Statistics = ({data, label})=>{
 import { useState } from 'react' 
 
 const App = () => {
+  /*--------labels and titles-------- */
   const title = "give feedback"
-  const comments =["good","neutral","bad"]
+  const labels =["good","neutral","bad","all","average", "positive"]
   const subTitle= "statistics"
 
+/*------------useStates------------ */
   const [good, setGood] = useState(0)
   const [neutral, setNeutral] = useState(0)
   const [bad, setBad] = useState(0)
 
+/*--------event handlers------------ */
   const hanleGood =  () => { setGood(good + 1)}
   const hanleNeutral = () => { setNeutral(neutral + 1)}
   const hanleBad = () => { setBad(bad + 1)}
-
   const functions = {hanleGood, hanleNeutral, hanleBad}
-  const data = {good, neutral, bad }
+  const counting = {good, neutral, bad}
+
+  /*-----------calculations----------- */
+  const allComments = good + neutral + bad
+  const calculations = () => { 
+    if (good>0) {
+    return({
+      positive: (good/allComments)*100+"%",
+      averge: (good-bad)/allComments
+    })
+    } else{return({
+      positive: 0,
+      averge: 0
+    })}
+  } 
+  const statistics = {
+    addition: allComments,
+    calculations: calculations()
+  }
   return (
     <>
     <Header text={title} />
-    <Content1 comments = {comments} onClick={functions} />
-    <Section subTitle = {subTitle} comments ={comments} data= {data}/>
+    <Content1 comments = {labels} onClick={functions} />
+    <Section 
+      subTitle = {subTitle} 
+      comments ={labels} 
+      counting={counting} 
+      statistics={statistics}/>
     </>
   )
 }
