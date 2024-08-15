@@ -24,7 +24,7 @@ const Buttons = ({text, onClick})=>{
   )
 }
 
-const Section = ({statistics, counting, subTitle, comments: [goodLabel, neutralLabel, badLabel, allLabel, averageLabel,positiveLabel]})=>{
+const Statistics = ({statistics, counting, subTitle, comments: [goodLabel, neutralLabel, badLabel, allLabel, averageLabel,positiveLabel]})=>{
 if (counting.good ===0 && counting.bad=== 0) {
     return(
       <div>
@@ -35,12 +35,12 @@ if (counting.good ===0 && counting.bad=== 0) {
   return(
     <section>
       <SubTitle subTitle = {subTitle} />
-      <Statistics label ={goodLabel} data={counting.good} />
-      <Statistics label ={neutralLabel} data={counting.neutral} />
-      <Statistics label ={badLabel} data={counting.bad} />
-      <Statistics label ={allLabel} data={statistics.addition} />
-      <Statistics label ={averageLabel} data={statistics.calculations.averge} /> 
-      <Statistics label ={positiveLabel} data={statistics.calculations.positive} />
+      <StatistiLine label ={goodLabel} data={counting.good} />
+      <StatistiLine label ={neutralLabel} data={counting.neutral} />
+      <StatistiLine label ={badLabel} data={counting.bad} />
+      <StatistiLine label ={allLabel} data={statistics.addition} />
+      <StatistiLine label ={averageLabel} data={statistics.calculations.averge} /> 
+      <StatistiLine label ={positiveLabel} data={statistics.calculations.positive} />
     </section>
   )
 }
@@ -53,7 +53,7 @@ const SubTitle = ({subTitle}) =>{
   )
 }
 
-const Statistics = ({data, label})=>{  
+const StatistiLine = ({data, label})=>{  
   return(
     <div>
       <label htmlFor="">{label}</label>
@@ -104,14 +104,13 @@ const App = () => {
     <>
     <Header text={title} />
     <Content1 comments = {labels} onClick={functions} />
-    <Section 
+    <Statistics 
       subTitle = {subTitle} 
       comments ={labels} 
       counting={counting} 
       statistics={statistics}/>
     </>
-    /*I consider that the code I have developed for steps 1.6 and 1.7 already complies with what 
-    was requested for step 1.8 */
+    /*I only adjusted the name of some components since I consider that the design made for part 1.7 complies with what was requested in part 1.10 */
   )
 }
 
