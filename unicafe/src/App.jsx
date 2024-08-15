@@ -25,9 +25,8 @@ const Buttons = ({text, onClick})=>{
 }
 
 const Section = ({statistics, counting, subTitle, comments: [goodLabel, neutralLabel, badLabel, allLabel, averageLabel,positiveLabel]})=>{
-  console.log(statistics.calculations);
   return(
-    <>
+    <section>
       <SubTitle subTitle = {subTitle} />
       <Statistics label ={goodLabel} data={counting.good} />
       <Statistics label ={neutralLabel} data={counting.neutral} />
@@ -35,15 +34,15 @@ const Section = ({statistics, counting, subTitle, comments: [goodLabel, neutralL
       <Statistics label ={allLabel} data={statistics.addition} />
       <Statistics label ={averageLabel} data={statistics.calculations.averge} /> 
       <Statistics label ={positiveLabel} data={statistics.calculations.positive} />
-    </>
+    </section>
   )
 }
 
 const SubTitle = ({subTitle}) =>{
   return(
-    <div>
+    <>
       <h2>{subTitle}</h2>
-    </div>
+    </>
   )
 }
 
@@ -104,6 +103,8 @@ const App = () => {
       counting={counting} 
       statistics={statistics}/>
     </>
+    /*I consider that the code I have developed for steps 1.6 and 1.7 already complies with what 
+    was requested for step 1.8 */
   )
 }
 
