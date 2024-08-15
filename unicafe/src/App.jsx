@@ -35,12 +35,16 @@ if (counting.good ===0 && counting.bad=== 0) {
   return(
     <section>
       <SubTitle subTitle = {subTitle} />
-      <StatistiLine label ={goodLabel} data={counting.good} />
-      <StatistiLine label ={neutralLabel} data={counting.neutral} />
-      <StatistiLine label ={badLabel} data={counting.bad} />
-      <StatistiLine label ={allLabel} data={statistics.addition} />
-      <StatistiLine label ={averageLabel} data={statistics.calculations.averge} /> 
-      <StatistiLine label ={positiveLabel} data={statistics.calculations.positive} />
+      <table>
+        <tbody>
+          <StatistiLine label ={goodLabel} data={counting.good} />
+          <StatistiLine label ={neutralLabel} data={counting.neutral} />
+          <StatistiLine label ={badLabel} data={counting.bad} />
+          <StatistiLine label ={allLabel} data={statistics.addition} />
+          <StatistiLine label ={averageLabel} data={statistics.calculations.averge} /> 
+          <StatistiLine label ={positiveLabel} data={statistics.calculations.positive} />
+          </tbody>
+      </table>
     </section>
   )
 }
@@ -55,11 +59,10 @@ const SubTitle = ({subTitle}) =>{
 
 const StatistiLine = ({data, label})=>{  
   return(
-    <div>
-      <label htmlFor="">{label}</label>
-      <span> {data}</span>
-      <br />
-    </div>
+    <tr>
+      <th><label htmlFor="">{label}</label></th>
+      <th><span> {data}</span></th>
+    </tr>
   )
 }
 
@@ -110,7 +113,6 @@ const App = () => {
       counting={counting} 
       statistics={statistics}/>
     </>
-    /*I only adjusted the name of some components since I consider that the design made for part 1.7 complies with what was requested in part 1.10 */
   )
 }
 
