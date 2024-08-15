@@ -25,6 +25,13 @@ const Buttons = ({text, onClick})=>{
 }
 
 const Section = ({statistics, counting, subTitle, comments: [goodLabel, neutralLabel, badLabel, allLabel, averageLabel,positiveLabel]})=>{
+if (counting.good ===0 && counting.bad=== 0) {
+    return(
+      <div>
+        <p>No feedback given</p>
+      </div>
+    )
+  }
   return(
     <section>
       <SubTitle subTitle = {subTitle} />
