@@ -1,5 +1,33 @@
-import { useState } from 'react'
+const Section =({func, list, texts, uses })=>{  
+  return(
+    <div>
+      <Votes uses= {uses} list={list} texts={texts} />
+      <Button func={func[1]} texts={texts[1]} />
+      <Button func={func[0]} texts={texts[0]}/>
+    </div>
+  )
+}
 
+const Button = ({func, texts})=>{
+  return(
+    <>
+      <button onClick={func}>{texts}</button>
+    </>
+  )
+}
+
+const Votes = ({ list, texts, uses:[id, numVotes]})=>{ 
+  console.log(id);
+  return(
+    <div>
+      <p>{list[id]}</p>
+      <span>{texts[2]}{numVotes[id]}{texts[3]}</span>
+    </div>
+  )
+}
+
+
+import { useState } from 'react'
 const App = () =>  {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -13,16 +41,29 @@ const App = () =>  {
   ]
 
   const [selected, setSelected] = useState(0)  
+  const [vote, setVote] = useState({0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, })
+  
 
-const random =(min, max)=>{ setSelected(Math.floor(Math.random()*(max - min + 1)))}
+  const random =(min, max)=>{return(Math.floor(Math.random()*(max - min + 1)))}
+  const getNumber = ()=>{
+    const number = random(0,7)
+    setSelected(number)
+  }
+  const votes = ()=>{
+    const newVote = {...vote}
+    newVote[selected] ++
+    console.log(newVote);
+    setVote(newVote)
+  }
+  
+  const funcs = [getNumber, votes]
+  const texts = ["next anecdote", "vote", "has ", " votes"]
+  const uses = [selected, vote]
 
-console.log(selected)
   return (
-    <div>
-      {anecdotes[selected]}
-      <br />
-      <button onClick={()=>{random(0, 7)}}>next anecdote</button>
-    </div>
+    <>
+    <Section list={anecdotes} uses={uses} func={funcs}  texts={texts} />
+    </>
   )
 }
 
