@@ -1,9 +1,10 @@
-const Section =({func, list, texts, uses })=>{  
+const Section =({func, list, texts:[next,vote, title1, title2, ...texts], uses:[id, numVotes, moreVoted] })=>{  
   return(
     <div>
-      <Votes uses= {uses} list={list} texts={texts} />
-      <Button func={func[1]} texts={texts[1]} />
-      <Button func={func[0]} texts={texts[0]}/>
+      <Votes id= {id} list={list} texts={texts} numVotes={numVotes} title={title1}/>
+      <Button func={func[1]} texts={vote} />
+      <Button func={func[0]} texts={next}/>
+      <Votes id= {moreVoted} list={list} texts={texts} numVotes={numVotes} title={title2} />
     </div>
   )
 }
@@ -16,16 +17,16 @@ const Button = ({func, texts})=>{
   )
 }
 
-const Votes = ({ list, texts, uses:[id, numVotes]})=>{ 
-  console.log(id);
+const Votes = ({ id, list, numVotes, title, texts:[has,votes]})=>{ 
+  
   return(
     <div>
+      <h1>{title}</h1>
       <p>{list[id]}</p>
-      <span>{texts[2]}{numVotes[id]}{texts[3]}</span>
+      <span>{has}{numVotes[id]}{votes}</span>
     </div>
   )
 }
-
 
 import { useState } from 'react'
 const App = () =>  {
@@ -42,23 +43,38 @@ const App = () =>  {
 
   const [selected, setSelected] = useState(0)  
   const [vote, setVote] = useState({0:0, 1:0, 2:0, 3:0, 4:0, 5:0, 6:0, 7:0, })
-  
-
+  const [moreVoted, setMoredVoted] = useState(null)
+  /*---------- generate a random number ---------- */
   const random =(min, max)=>{return(Math.floor(Math.random()*(max - min + 1)))}
+  /**-------- get the most votes ----------*/
+  const getMoreVoted = () => {
+    let maxVote = 0;
+    let maxKey = null;
+    for (const key in vote) {
+      if (vote[key] > maxVote) {
+        maxKey = key
+        maxVote = vote[key]
+      }
+    }
+    setMoredVoted(maxKey)
+  };
+  /*---------- get the random number ----------*/
   const getNumber = ()=>{
     const number = random(0,7)
     setSelected(number)
+    getMoreVoted()
+    
   }
-  const votes = ()=>{
-    const newVote = {...vote}
-    newVote[selected] ++
-    console.log(newVote);
-    setVote(newVote)
-  }
-  
+  /*---------- register the votes ---------- */
+    const votes = ()=>{
+      const newVote = {...vote}
+      newVote[selected] ++
+      setVote(newVote)
+    }
+  /*----------  arrys for the components ----------*/
   const funcs = [getNumber, votes]
-  const texts = ["next anecdote", "vote", "has ", " votes"]
-  const uses = [selected, vote]
+  const texts = ["next anecdote","vote","Anecdote of the day","Anecdote with more votes","has "," votes"]
+  const uses = [selected, vote, moreVoted]
 
   return (
     <>
