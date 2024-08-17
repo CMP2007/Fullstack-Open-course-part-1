@@ -5,15 +5,14 @@ This is a solution to the exercises in Part 1 (second) of the Fullstack Open cou
 ## Table of Contents
 
 - [Exercises](#exercises)
-- [curseInfo (exercises 1.1 to 1.5)](#curseInfo (exercises 1.1 - 1.5))
-- [unicafe (exercises 1.6 to 1.11)](#unicafe (exercises 1.6 - 1.11))
-- [anecdotes (exercises 1.12 to 1.14)](#anecdotes (exercises 1.12 - 1.14))
+    - [curseInfo (exercises 1.1 to 1.5)](#curseInfo (exercises 1.1 - 1.5))
+    - [unicafe (exercises 1.6 to 1.11)](#unicafe (exercises 1.6 - 1.11))
+    - [anecdotes (exercises 1.12 to 1.14)](#anecdotes (exercises 1.12 - 1.14))
 - [Overview](#overview)
 - [Links](#inks)
 - [My Process](#my-process)
-- [What I Learned](#what-i-learned)
-- [Continuous Development](#continuousdevelopment)
-- [Author](#author)
+    - [What I Learned](#what-i-learned)
+    - [Author](#author)
 
 ## Summary
 
